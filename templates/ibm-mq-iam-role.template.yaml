@@ -12,7 +12,7 @@ Metadata:
         default: Role name
 Parameters:
   RoleName:
-    Description: The name to give to the role.
+    Description: The name to give to the IAM role.
     Default: IBMMQDeploymentRole
     Type: String
 Resources:
