@@ -15,7 +15,6 @@ Metadata:
     - com
     - aws
     - arn
-    - delimited
     - myid
     - otherid
   AWS::CloudFormation::Interface:
