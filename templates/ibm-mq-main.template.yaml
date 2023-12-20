@@ -89,7 +89,7 @@ Parameters:
     ConstraintDescription: >-
       The S3 bucket name can include numbers, lowercase letters,
       and hyphens (-), but it cannot start or end with a hyphen.
-    Default: aws-ia-us-east-1
+    Default: aws-ia
     Description: >-
       Name of the S3 bucket for your copy of the deployment assets. Keep the default
       name unless you are customizing the template. Changing the name updates code
@@ -130,7 +130,7 @@ Parameters:
     Type: List<AWS::EC2::AvailabilityZone::Name>
 
 Conditions:
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-quickstart]
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-ia]
 
 Resources:
   IBMMQIAMRoleStack:
@@ -138,7 +138,7 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/ibm-mq-iam-role.template.yaml
-        - S3Bucket: !If [UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
           S3Region: !If [UsingDefaultBucket, !Ref AWS::Region, !Ref QSS3BucketRegion]
       Parameters:
         RoleName: !Join [ "", [ "ibm-mq-", !Ref EKSClusterName, "-", !Ref "AWS::Region", "-role" ] ]
@@ -148,7 +148,7 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/cfn-ps-aws-vpc/templates/aws-vpc.template.yaml
-        - S3Bucket: !If [ UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName ]
+        - S3Bucket: !If [ UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName ]
           S3Region: !If [ UsingDefaultBucket, !Ref AWS::Region, !Ref QSS3BucketRegion ]
       Parameters:
         AvailabilityZones: !Join [ ',', !Ref AvailabilityZones ]
@@ -161,7 +161,7 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/ibm-mq-ec2-bootnode.template.yaml
-        - S3Bucket: !If [UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
           S3Region: !If [UsingDefaultBucket, !Ref AWS::Region, !Ref QSS3BucketRegion]
       Parameters:
         RoleName: !GetAtt IBMMQIAMRoleStack.Outputs.RoleName
@@ -182,7 +182,7 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/ibm-mq-create-eks.template.yaml
-        - S3Bucket: !If [UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
           S3Region: !If [UsingDefaultBucket, !Ref AWS::Region, !Ref QSS3BucketRegion]
       Parameters:
         BootNodeInstanceId: !GetAtt IBMMQBootNodeStack.Outputs.InstanceId
@@ -195,7 +195,7 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/ibm-mq-eks-workload.template.yaml
-        - S3Bucket: !If [UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
           S3Region: !If [UsingDefaultBucket, !Ref AWS::Region, !Ref QSS3BucketRegion]
       Parameters:
         BootNodeInstanceId: !GetAtt IBMMQBootNodeStack.Outputs.InstanceId
@@ -208,7 +208,7 @@ Resources:
         InternalLoadBalancer: !Ref InternalLoadBalancer
         QSS3CodeLocation: !Sub
           - s3://${S3Bucket}/${QSS3KeyPrefix}
-          - S3Bucket: !If [UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName]
+          - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
         AdditionalEKSAdminArns: !Ref AdditionalEKSAdminArns
 
 Outputs:
