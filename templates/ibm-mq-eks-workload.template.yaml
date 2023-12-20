@@ -109,7 +109,9 @@ Resources:
         commands:
         - !Sub |
           #!/bin/bash
-          aws s3 cp ${QSS3CodeLocation} . --recursive
+          aws s3 cp ${QSS3CodeLocation}scripts/destroy.sh scripts/
+          aws s3 cp ${QSS3CodeLocation}scripts/install.sh scripts/
+          aws s3 cp ${QSS3CodeLocation}scripts/utilities.sh scripts/
           echo "APPLICATION_NAMESPACE=${AppNamespace}" > scripts/ibm-mq-parameters.properties
           echo "APP_PASSWORD=${MQAppPassword}" >> scripts/ibm-mq-parameters.properties
           echo "ADMIN_PASSWORD=${MQAdminPassword}" >> scripts/ibm-mq-parameters.properties
