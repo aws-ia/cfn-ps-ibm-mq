@@ -1,7 +1,3 @@
-[submodule "submodules/quickstart-aws-vpc"]
-	path = submodules/quickstart-aws-vpc
-	url = https://github.com/aws-quickstart/quickstart-aws-vpc.git
-	branch = main
 [submodule "submodules/cfn-ps-aws-vpc"]
 	path = submodules/cfn-ps-aws-vpc
 	url = https://github.com/aws-ia/cfn-ps-aws-vpc.git
