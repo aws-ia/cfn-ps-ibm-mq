@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="description" content="IBM MQ Native HA Deployment Guide on AWS">
 <meta name="keywords" content="Partner Solution, AWS, IBM MQ Native HA">
 <title>IBM MQ Native HA on AWS</title>
@@ -913,6 +913,11 @@ Refer to the <a href="https://github.com/aws-ia/cfn-ps-ibm-mq" target="_blank" r
 <div class="paragraph">
 <p>This guide covers the information you need to deploy the IBM MQ Native HA Partner Solution in an Amazon Elastic Kubernetes Service (Amazon EKS) cluster.</p>
 </div>
+<div class="paragraph">
+<p>The IBM MQ Native HA is a reference deployment of an IBM MQ Native HA queue manager running on the EKS platform. Note that the Partner solution uses the IBM MQ Advanced for Developers Container image and sample helm charts for deployment - neither of which are not supported by IBM.
+For production deployments of MQ on a non-OpenShift container platform, you should build your own container and host it in a container registry. Full details on how to build a supported MQ container that can be used with a production license entitlement can be in the
+<a href="https://www.ibm.com/docs/en/ibm-mq/9.4?topic=integration-planning" target="_blank" rel="noopener">Planning for IBM MQ in containers</a> guide.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1238,7 +1243,7 @@ If you opted for an internal only load balancer, it won&#8217;t be reachable fro
 <footer>
     <p class="footer-text">
         <!-- We can use document attributes: -->
-        <!-- Generated with Asciidoctor v2.0.20. -->
+        <!-- Generated with Asciidoctor v2.0.23. -->
         <a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> |
         &copy; {current-year}, Amazon Web Services, Inc. or its affiliates and IBM. All rights reserved.
     </p>
