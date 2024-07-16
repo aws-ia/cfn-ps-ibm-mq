@@ -1,1 +1,5 @@
 This guide covers the information you need to deploy the {partner-product-name} Partner Solution in an Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
+
+The {partner-product-name} is a reference deployment of an IBM MQ Native HA queue manager running on the EKS platform. Note that the Partner solution uses the IBM MQ Advanced for Developers Container image and sample helm charts for deployment - neither of which are not supported by IBM.
+For production deployments of MQ on a non-OpenShift container platform, you should build your own container and host it in a container registry. Full details on how to build a supported MQ container that can be used with a production license entitlement can be in the  
+https://www.ibm.com/docs/en/ibm-mq/9.4?topic=integration-planning[Planning for IBM MQ in containers^] guide. 
