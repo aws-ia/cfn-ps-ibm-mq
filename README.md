@@ -1,3 +1,7 @@
+## Deprecation Notice
+
+:x: This repository is subject to deprecation in Q4 2024. For more details, [please review this announcement](https://github.com/aws-ia/.announcements/issues/1). 
+
 ## IBM MQ for Amazon EKS
 
 For architectural details and step-by-step instructions, refer to the [deployment guide](https://fwd.aws/z5x65?).
